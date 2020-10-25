@@ -19,9 +19,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Plugin List 
 plugins=(
+    asdf
     zsh_reload
     zsh-autosuggestions
-    heroku)
+    heroku
+    colorize 
+    zsh-navigation-tools
+    git-auto-fetch 
+)
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,3 +67,11 @@ unset __conda_setup
 
 # Source syntax highlighting installed with brew 
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# HSTR configuration - add this to ~/.zshrc
+alias hh=hstr                    # hh to be alias for hstr
+setopt histignorespace           # skip cmds w/ leading space from history
+export HSTR_CONFIG=hicolor       # get more colors
+bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
+

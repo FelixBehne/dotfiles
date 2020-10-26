@@ -1,3 +1,11 @@
+# Brew completions 
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -25,7 +33,11 @@ plugins=(
     heroku
     colorize 
     zsh-navigation-tools
-    git-auto-fetch 
+    git-auto-fetch
+    thefuck
+    aws
+    fzf
+    zsh-completions
 )
 
 
@@ -34,6 +46,9 @@ source $ZSH/oh-my-zsh.sh
 # User configuration ###################
 
  export LANG=en_US.UTF-8
+
+ # Alias declaration 
+ alias ghc="cd ~/Documents/GitHub"
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
@@ -75,3 +90,15 @@ setopt histignorespace           # skip cmds w/ leading space from history
 export HSTR_CONFIG=hicolor       # get more colors
 bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
 
+# Hook up direnv 
+eval "$(direnv hook zsh)"
+
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/felixbehne/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/felixbehne/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/felixbehne/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/felixbehne/google-cloud-sdk/completion.zsh.inc'; fi
